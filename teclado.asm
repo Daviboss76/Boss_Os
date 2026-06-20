@@ -28,6 +28,9 @@ verificar_teclado:
     cmp al, '6'          ; Tecla '6' para o navegador
     je .ir_web
 
+    cmp al, 's'          ; Tecla 's' para reiniciar
+    je .reiniciar_sistema
+
     jmp .sem_tecla       ; Se não for nada, ignora
 
 ; --- DESTINOS (Estes podem ficar encostados na esquerda com ':') ---
@@ -59,5 +62,10 @@ verificar_teclado:
     call abrir_navegador
     ret
 
+.reiniciar_sistema:
+    int 19h              ; Chama a interrupção de reinicialização da BIOS
+    ret
+
 .sem_tecla:
     jmp verificar_teclado
+

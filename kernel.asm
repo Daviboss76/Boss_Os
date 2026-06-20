@@ -24,6 +24,9 @@ main_loop:
     ; --- Módulo de Teclado (O que o ChatGPT vai fazer) ---
     call verificar_teclado    ; Esta função virá do driver do Aliado
 
+    ; --- Módulo de erros
+    call verificar_Os
+
     jmp main_loop
 
 ; ==========================================================
@@ -32,6 +35,7 @@ main_loop:
 
 %include "video.asm"      ; Funções de desenho e janelas
 %include "relogio.asm"    ; Lógica do relógio CMOS
+%include "BES.asm"
 %include "memoria_grs.asm"
 %include "memoria_vga.asm"
 %include "biblioteca.asm"
