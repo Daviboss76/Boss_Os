@@ -23,7 +23,7 @@ verificar_teclado:
     je .ir_IA
 
     cmp al, '5'          ; Tecla '5' para a memoria
-    je .ir_memoria
+    je .ir_jogo
 
     cmp al, '6'          ; Tecla '6' para o navegador
     je .ir_web
@@ -54,8 +54,8 @@ verificar_teclado:
     call abrir_IA
     ret
 
-.ir_memoria:
-    call abrir_memoria
+.ir_jogo:
+    call main_cobra
     ret
 
 .ir_web:

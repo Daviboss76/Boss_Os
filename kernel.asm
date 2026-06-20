@@ -37,7 +37,7 @@ main_loop:
 %include "relogio.asm"    ; Lógica do relógio CMOS
 %include "BES.asm"
 %include "memoria_grs.asm"
-%include "memoria_vga.asm"
+%include "jogo.asm"
 %include "biblioteca.asm"
 %include "terminal.asm"
 %include "editor.asm"

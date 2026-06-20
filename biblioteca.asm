@@ -1,7 +1,10 @@
 ; ==========================================================
-; biblioteca.asm - As Cordas Vocais do BossOS
+; biblioteca.asm - As Cordas Vocais do BossOS v2.3
 ; ==========================================================
 
+section .text        ; Garante que tudo abaixo seja tratado como código puro
+
+; --- Função para Imprimir Strings ---
 print_string:
     pusha                ; Guarda todos os registradores para não dar erro
 .loop:
@@ -16,7 +19,7 @@ print_string:
     popa                 ; Devolve os registradores como estavam
     ret
 
-; --- Aproveite e coloque a comparar_strings aqui também se não tiver ---
+; --- Função para Comparar Strings ---
 comparar_strings:
     push si
     push di
@@ -40,6 +43,7 @@ comparar_strings:
     pop si
     stc
     ret
+
 ; --- Função para Limpar a Tela (Padrão BossOS) ---
 limpar_tela:
     pusha
@@ -47,6 +51,7 @@ limpar_tela:
     int 10h              ; BIOS faz a limpeza
     popa
     ret
+
 ; --- Função para Imprimir Números (AX) ---
 imprimir_numero_ax:
     pusha
@@ -68,8 +73,9 @@ imprimir_numero_ax:
     loop .mostrar
     popa
     ret
+
 ; =============================================================================
-; EXPANSÃO GRÁFICA PARA O BossBrowser (Adicionar na biblioteca.asm)
+; EXPANSÃO GRÁFICA PARA O BossBrowser 
 ; =============================================================================
 
 ; --- Função: limpar_tela_branco ---
@@ -106,7 +112,7 @@ print_string_color:
     mov bh, 0           ; Página de vídeo 0
     mov cx, 1           ; Escrever 1 vez
     int 10h
-    
+
     ; Avançar o cursor manualmente
     call mover_cursor_frente
     jmp .proximo_char
@@ -126,9 +132,6 @@ mover_cursor_frente:
     popa
     ret
 
-; --- Dados faltantes ---
-section .data
-    txt_navegador    db "NAVEGADOR", 0
 ; =============================================================================
 ; MÓDULO DE EXPANSÃO: TEXTO E BUFFERS (Adicionado para o BossBrowser)
 ; =============================================================================
@@ -176,4 +179,10 @@ imprimir_hex_byte:
     mov ah, 0Eh
     int 10h
     ret
+
+; =============================================================================
+; SEÇÃO DE DADOS ISOLADA (Fica sempre no final para não misturar com o código)
+; =============================================================================
+section .data
+    txt_navegador    db "NAVEGADOR", 0
 
